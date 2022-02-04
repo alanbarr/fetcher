@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fetcher</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+    </head>
+    <body>
+        <section>
+            <h1>Fetcher</h1>
+            <div>
+                <h2>Request</h2>
+                <input name="target" placeholder="target uri" id="target_uri"
+                    value="http://192.168.1.50:8080/v1/pos?Action=Status&Format=XML"/><br/>
+
+                <textarea class="ta" id="fetch_json" placeholder="JSON for Fetch"></textarea><br/>
+                <button name="submit" id="submit_button">Submit</button><br/>
+            </div>
+            <div>
+                <h2>Response</h2>
+                <h3>Status</h3>
+                <textarea id="response_status"></textarea>
+                <h3>Headers</h3>
+                <textarea class="ta" id="response_headers"></textarea>
+                <h3>Body</h3>
+                <textarea class="ta" id="response_body"></textarea>
+            </div>
+        </section>
+
+        <div>
+            <h2>About</h2>
+            <p>What is this ugly site? It simply exposes the
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch">Fetch API</a>
+                to the user. This is to allow experimentation with how a browser
+                implements <a href="https://fetch.spec.whatwg.org/#http-cors-protocol">CORS</a>.
+            </p>
+        </div>
+        <script src="js/fetcher.js"></script>
+    </body>
+</html>
