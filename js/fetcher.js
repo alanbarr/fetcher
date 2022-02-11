@@ -34,11 +34,9 @@ function submitButtonClicked() {
     wipeDownResponse();
 
     const target = document.getElementById("target_uri").value
-    //const target ="http://192.168.1.50:8080/v1/pos?Action=Status&Format=XML";
 
     console.log("Request going to URI: " + target)
 
-    //const init_data = document.getElementById("fetch_json").value
     const init_data = JSON.parse(document.getElementById("fetch_json").value);
 
     fetch(target, init_data)
