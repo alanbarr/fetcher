@@ -9,13 +9,16 @@ function updateInputsFromUrl() {
     const url = new URL(window.location.href);
     const target = url.searchParams.get("target");
     const fetch = url.searchParams.get("fetch");
+    const body = url.searchParams.get("body");
 
     console.log("URL Param Target:" + target);
     console.log("URL Param Fetch:" + fetch);
+    console.log("URL Param Body:" + body);
 
     if (target && fetch) {
         document.getElementById("target_uri").value = target;
         document.getElementById("fetch_json").value = fetch;
+        document.getElementById("fetch_body").value = body;
     }
 }
 
@@ -23,9 +26,11 @@ function updateUrlFromInputs() {
 
     const target = document.getElementById("target_uri").value;
     const fetch = document.getElementById("fetch_json").value;
+    const body = document.getElementById("fetch_body").value;
 
     history.replaceState("", "", "?target=" + encodeURIComponent(target)
-                                  + "&fetch=" + encodeURIComponent(fetch));
+                                  + "&fetch=" + encodeURIComponent(fetch)
+                                  + "&body=" + encodeURIComponent(body));
 }
 
 function submitButtonClicked() {
@@ -38,6 +43,12 @@ function submitButtonClicked() {
     console.log("Request going to URI: " + target)
 
     const init_data = JSON.parse(document.getElementById("fetch_json").value);
+
+    const body = document.getElementById("fetch_body").value;
+
+    if (body) {
+        init_data.body = body;
+    }
 
     fetch(target, init_data)
       .then(response => processResponse(response));

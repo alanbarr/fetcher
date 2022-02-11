@@ -10,10 +10,13 @@
             <h1>Fetcher</h1>
             <div>
                 <h2>Request</h2>
+                <h3>Target</h3>
                 <input name="target" placeholder="target uri" id="target_uri"
                     value="http://192.168.1.50:8080/v1/pos?Action=Status&Format=XML"/><br/>
-
+                <h3>Fetch API (minus body)</h3>
                 <textarea class="ta" id="fetch_json" placeholder="JSON for Fetch"></textarea><br/>
+                <h3>Body</h3>
+                <textarea class="ta" id="fetch_body"></textarea><br/>
                 <button name="submit" id="submit_button">Submit</button><br/>
             </div>
             <div>
