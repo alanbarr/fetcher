@@ -4,6 +4,30 @@ function wipeDownResponse() {
     document.getElementById("response_headers").value = null;
 }
 
+function updateInputsFromUrl() {
+
+    const url = new URL(window.location.href);
+    const target = url.searchParams.get("target");
+    const fetch = url.searchParams.get("fetch");
+
+    console.log("URL Param Target:" + target);
+    console.log("URL Param Fetch:" + fetch);
+
+    if (target && fetch) {
+        document.getElementById("target_uri").value = target;
+        document.getElementById("fetch_json").value = fetch;
+    }
+}
+
+function updateUrlFromInputs() {
+
+    const target = document.getElementById("target_uri").value;
+    const fetch = document.getElementById("fetch_json").value;
+
+    history.replaceState("", "", "?target=" + encodeURIComponent(target)
+                                  + "&fetch=" + encodeURIComponent(fetch));
+}
+
 function submitButtonClicked() {
     console.log("Submit Pressed");
 
@@ -19,6 +43,8 @@ function submitButtonClicked() {
 
     fetch(target, init_data)
       .then(response => processResponse(response));
+
+    updateUrlFromInputs()
 }
 
 async function processResponse(response) {
@@ -58,3 +84,5 @@ document.getElementById("fetch_json").defaultValue =`{
   },
   "redirect": "follow"
 }`;
+
+updateInputsFromUrl();
